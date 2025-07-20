@@ -1,6 +1,6 @@
 {
   "name": "@li0ard/gost341194",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -28,7 +28,8 @@
   },
   "dependencies": {
     "@li0ard/gost3413": "^0.1.4",
-    "@li0ard/magma": "^0.1.4"
+    "@li0ard/magma": "^0.1.4",
+    "@noble/hashes": "^1.8.0"
   },
   "files": ["dist"],
   "publishConfig": {
