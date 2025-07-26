@@ -23,7 +23,17 @@ npm i @li0ard/gost341194
 bunx jsr i @li0ard/gost341194
 ```
 
-## Usage
+## Supported modes
+- [x] Hash function
+- [x] PBKDF2
+
+## Features
+- Provides simple and modern API
+- Most of the APIs are strictly typed
+- Fully complies with [GOST R 34.11-94 (RFC 5831)](https://datatracker.ietf.org/doc/html/rfc5831) standard
+- Supports Bun, Node.js, Deno, Browsers
+
+## Examples
 
 ```ts
 import { Gost341194 } from "@li0ard/streebog"
