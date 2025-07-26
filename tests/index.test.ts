@@ -1,6 +1,20 @@
 import { describe, test, expect } from "bun:test"
-import { Gost341194, Gost341194PBKDF2 } from "../src"
+import { Gost341194, gost341194 } from "../src"
 import { sboxes } from "@li0ard/magma"
+import { randomBytes } from "crypto"
+
+test("Test symmetric", () => {
+    let chunks: Buffer[] = []
+    for(let i = 0; i < 10; i++) {
+        chunks.push(randomBytes(10))
+    }
+
+    let m = new Gost341194()
+    for(let i of chunks) {
+        m.update(i)
+    }
+    expect(m.digest()).toStrictEqual(gost341194(Buffer.concat(chunks)))
+})
 
 describe("Test vectors", () => {
     test("Test param set", () => {
@@ -46,18 +60,4 @@ test("Clone", () => {
     m.update(new TextEncoder().encode("bar"))
 
     expect(c.digest()).toStrictEqual(m.digest())
-})
-
-describe("PBKDF2", () => {
-    let p = Buffer.from("password")
-    let s = Buffer.from("salt")
-    test("#1", () => {
-        let expected = Buffer.from("7314e7c04fb2e662c543674253f68bd0b73445d07f241bed872882da21662d58", "hex")
-        expect(Gost341194PBKDF2(p, s, 1, 32)).toStrictEqual(expected)
-    })
-
-    test("#2", () => {
-        let expected = Buffer.from("990dfa2bd965639ba48b07b792775df79f2db34fef25f274378872fed7ed1bb3", "hex")
-        expect(Gost341194PBKDF2(p, s, 2, 32)).toStrictEqual(expected)
-    })
 })
