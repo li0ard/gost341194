@@ -141,4 +141,10 @@ export class Gost341194 {
     digest(): Uint8Array { return this.digestInto(new Uint8Array(this.outputLen)); }
 }
 
+/**
+ * Compute hash with GOST R 34.11-94
+ * @param input Input bytes
+ */
+export const gost341194 = (input: Uint8Array): Uint8Array => new Gost341194().update(input).digest();
+
 export * from "./pbkdf2";
