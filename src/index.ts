@@ -1,4 +1,4 @@
-import { bytesToNumberBE, concatBytes, numberToBytesBE, xor } from "@li0ard/gost3413/dist/utils";
+import { bytesToNumberBE, concatBytes, numberToBytesBE, xor } from "./utils";
 import { type Sbox, encryptECB } from "@li0ard/magma";
 import { BLOCKSIZE, C2, C3, C4, DEFAULT_SBOX } from "./const";
 
