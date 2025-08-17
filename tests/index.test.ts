@@ -1,6 +1,5 @@
 import { describe, test, expect } from "bun:test"
-import { Gost341194, gost341194 } from "../src"
-import { sboxes } from "@li0ard/magma"
+import { Gost341194, gost341194, sboxes } from "../src"
 import { randomBytes } from "crypto"
 
 test("Test symmetric", () => {
@@ -60,4 +59,13 @@ test("Clone", () => {
     m.update(new TextEncoder().encode("bar"))
 
     expect(c.digest()).toStrictEqual(m.digest())
+})
+
+test("DSTU GOST 34.311-95", () => {
+    let m = gost341194(
+        new Uint8Array(256).fill(0xff),
+        sboxes.DSSZZI_UA_DKE_1
+    )
+    let expected = Buffer.from("8df69d0619119294accb7bb73fad2daf46383058aba12b3e718cb27dc14ae94d", "hex")
+    expect(m).toStrictEqual(expected)
 })

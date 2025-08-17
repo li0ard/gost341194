@@ -1,5 +1,6 @@
-import { sboxes } from "@li0ard/magma";
+import { sboxes as sboxes_ } from "@li0ard/magma";
 
+export const sboxes = sboxes_
 export const DEFAULT_SBOX = sboxes.ID_GOSTR_3411_94_CRYPTOPRO_PARAM_SET;
 export const BLOCKSIZE = 32;
 export const C2 = new Uint8Array(32);

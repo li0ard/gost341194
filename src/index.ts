@@ -145,6 +145,7 @@ export class Gost341194 {
  * Compute hash with GOST R 34.11-94
  * @param input Input bytes
  */
-export const gost341194 = (input: Uint8Array): Uint8Array => new Gost341194().update(input).digest();
+export const gost341194 = (input: Uint8Array, sbox: Sbox = DEFAULT_SBOX): Uint8Array => new Gost341194(input, sbox).digest();
 
+export { sboxes } from "./const"
 export * from "./pbkdf2";
